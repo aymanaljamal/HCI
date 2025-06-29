@@ -7,6 +7,7 @@ body {
   padding: 0;
   direction: rtl;
   text-align: center;
+  overflow-x: hidden;
 }
 
 .container {
@@ -17,13 +18,14 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   position: relative;
+  box-sizing: border-box;
 }
 
 input {
   width: 80%;
   padding: 12px;
   font-size: 18px;
-  margin: 10px;
+  margin: 10px auto;
   border-radius: 10px;
   border: 2px solid #ffc107;
   box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
@@ -35,11 +37,12 @@ button, .btn {
   padding: 12px 25px;
   border: none;
   border-radius: 12px;
-  margin: 10px;
+  margin: 10px auto;
   font-size: 18px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
 }
 
 button:hover, .btn:hover {
@@ -108,13 +111,14 @@ img:hover {
 
 @media screen and (max-width: 480px) {
   .container {
-    margin: 20px auto;
-    padding: 15px;
+    width: 90%;
+    padding: 20px;
   }
 
   button, .btn {
     font-size: 16px;
     padding: 10px 20px;
+    width: 90%;
   }
 
   input {
@@ -123,8 +127,8 @@ img:hover {
   }
 
   .game-gallery img, img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .section-title {
