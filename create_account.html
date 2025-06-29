@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب طفل</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .age-btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .age-btns .btn {
+      flex: 1;
+      font-size: 18px;
+    }
+    #manualInput {
+      margin-top: 15px;
+      display: none;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      text-align: right;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[disabled] {
+      background: #f2f2f2;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>👶 إنشاء حساب طفلك</h2>
+
+    <label for="childName">اسم الطفل:</label>
+    <input id="childName" type="text" placeholder="سيتم ملؤه لاحقاً" disabled>
+
+    <label for="username">اسم المستخدم:</label>
+    <input id="username" type="text" placeholder="سيتم ملؤه لاحقاً" disabled>
+
+    <label for="parentName">ولي الأمر المرتبط:</label>
+    <input id="parentName" type="text" placeholder="سيتم ملؤه لاحقاً" disabled>
+
+    <label>العمر:</label>
+    <div class="age-btns">
+      <button class="btn" onclick="goto('quiz.html')">🧠 عن طريق اختبار</button>
+      <button class="btn" onclick="showManualInput()">🔢 إدخال يدوي</button>
+    </div>
+
+    <div id="manualInput">
+      <input type="number" id="manualAge" min="3" max="13" placeholder="أدخل عمرك بين 3 و 13">
+      <button class="btn" style="margin-top: 10px;" onclick="submitManualAge()">✅ تأكيد</button>
+    </div>
+  </div>
+
+  <script>
+    function goto(page) {
+      window.location.href = page;
+    }
+
+    function showManualInput() {
+      document.getElementById('manualInput').style.display = 'block';
+    }
+
+    function submitManualAge() {
+      const age = parseInt(document.getElementById('manualAge').value);
+      if (!age || age < 3 || age > 13) {
+        alert("🚫 يرجى إدخال عمر صحيح بين 3 و 13");
+        return;
+      }
+      localStorage.setItem("child_age", age);
+      goto('home.html');
+    }
+  </script>
+</body>
+</html>
