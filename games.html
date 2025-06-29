@@ -1,0 +1,74 @@
+<!-- games.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>🎮 ألعاب تناسب عمرك</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+  <div class="container" id="mainContainer">
+    <h2 id="title">ألعاب تناسب عمرك</h2>
+    <div id="gamesSection" class="game-gallery"></div>
+  </div>
+
+  <script>
+    const age = parseInt(localStorage.getItem("child_age") || 6);
+    const gamesSection = document.getElementById("gamesSection");
+    const container = document.getElementById("mainContainer");
+    const title = document.getElementById("title");
+    const body = document.getElementById("body");
+
+    let html = '';
+
+    if (age <= 4) {
+      body.style.backgroundColor = "#fff4f4";
+      container.style.border = "3px dashed #ffb3b3";
+      title.innerText = "👶 ألعاب بسيطة للصغار جدًا";
+      html = `
+        <img src="balloon.png" alt="بالونات">
+        <img src="game11.jpg" alt="سحب وإفلات">
+        <p>🎈 ألعاب تعلم الألوان والأشكال والضغط</p>
+      `;
+    } else if (age <= 6) {
+      body.style.backgroundColor = "#fffbe6";
+      container.style.border = "3px dashed #f9c74f";
+      title.innerText = "🧒 ألعاب ممتعة للأطفال 🎨";
+      html = `
+        <img src="game3.png" alt="أشكال">
+        <img src="game4.png" alt="ألوان">
+        <p>🧸 ألعاب تنمية بصرية وحركية</p>
+      `;
+    } else if (age <= 9) {
+      body.style.backgroundColor = "#e0f7fa";
+      container.style.border = "3px dashed #00bcd4";
+      title.innerText = "🧠 ألعاب ذكاء وتفكير 🚀";
+      html = `
+        <img src="game5.jpeg" alt="رياضيات">
+        <img src="game6.png" alt="ترتيب كلمات">
+        <p>📚 ألعاب تركيز وعد وحساب</p>
+      `;
+    } else if (age <= 11) {
+      body.style.backgroundColor = "#e1f5fe";
+      container.style.border = "3px dashed #0288d1";
+      title.innerText = "📘 ألعاب متقدمة للمدرسة";
+      html = `
+        <img src="game7.jpeg" alt="عمليات حسابية">
+        <img src="game8.jpeg" alt="سرد قصص">
+        <p>🧮 ألعاب تحفيز الذاكرة والفهم</p>
+      `;
+    } else {
+      body.style.backgroundColor = "#ede7f6";
+      container.style.border = "3px dashed #673ab7";
+      title.innerText = "🧑‍🎓 ألعاب للمبدعين الكبار 💡";
+      html = `
+        <img src="game9.png" alt="استراتيجية">
+        <img src="game10.png" alt="ألغاز">
+        <p>🧠 ألعاب تخطيط، استراتيجية، وألغاز متقدمة</p>
+      `;
+    }
+
+    gamesSection.innerHTML = html;
+  </script>
+</body>
+</html>

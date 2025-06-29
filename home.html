@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🎉 أهلاً بك!</h2>
+    <p id="welcomeMsg"></p>
+    <p>🧒 عمرك المقدر هو: <span id="ageDisplay"></span> سنوات</p>
+    <a href="parent.html" class="btn">👨‍👩‍👧 تعديل العمر من ولي الأمر</a>
+    <div id="contentArea"></div>
+  </div>
+
+  <script>
+    const age = parseInt(localStorage.getItem("child_age") || 6);
+    document.getElementById("ageDisplay").innerText = age;
+    const msg = document.getElementById("welcomeMsg");
+    const content = document.getElementById("contentArea");
+
+    if (age <= 6) {
+      msg.innerText = "👶 ألعاب مناسبة للأطفال الصغار.";
+      content.innerHTML = `<a href="traffic.html" class="btn">🚦 لعبة الإشارات</a>
+                           <a href="games.html" class="btn">🎨 ألعاب المرح</a>`;
+    } else if (age <= 9) {
+      msg.innerText = "🧒 ألعاب مناسبة لسن المدرسة.";
+      content.innerHTML = `<a href="math.html" class="btn">🍎 لعبة التفاح</a>
+                           <a href="games.html" class="btn">🎯 ألعاب التحدي</a>`;
+    } else {
+      msg.innerText = "🧑 ألعاب متقدمة تناسب سنك.";
+      content.innerHTML = `<a href="math.html" class="btn">📊 تحديات رياضية</a>
+                           <a href="games.html" class="btn">🧠 ألعاب ذكاء</a>`;
+    }
+  </script>
+</body>
+</html>

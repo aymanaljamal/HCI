@@ -1,0 +1,70 @@
+<!-- quiz.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>اختبار تحديد العمر</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>🧠 حدد عمرك من خلال هذا الاختبار</h2>
+    <div id="quizArea"></div>
+    <div id="result" class="hidden"></div>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "أي من هذه كرة؟", options: ["🍎", "⚽", "📘"], correct: "⚽", age: 3 },
+      { q: "ما الرقم بعد 3؟", options: ["4", "5", "2"], correct: "4", age: 5 },
+      { q: "ما هو الشكل المثلث؟", options: ["⬜️", "🔺", "⚪"], correct: "🔺", age: 6 },
+      { q: "5 + 2 = ؟", options: ["6", "7", "8"], correct: "7", age: 8 },
+      { q: "أي من هذه حيوان؟", options: ["🍎", "🐶", "🧃"], correct: "🐶", age: 5 },
+      { q: "ما الكلمة التي تبدأ بحرف 'ب'؟", options: ["تفاحة", "بالون", "موز"], correct: "بالون", age: 6 },
+      { q: "3 × 3 = ؟", options: ["6", "9", "12"], correct: "9", age: 9 },
+      { q: "ما الصورة التي تدل على الحزن؟", options: ["😊", "😢", "😂"], correct: "😢", age: 7 },
+      { q: "ما هي عاصمة فلسطين؟", options: ["القدس", "رام الله", "نابلس"], correct: "القدس", age: 10 },
+      { q: "ما ناتج 12 ÷ 4 ؟", options: ["2", "3", "4"], correct: "3", age: 11 },
+      { q: "أي من هذه أداة موسيقية؟", options: ["🥁", "🍔", "🚗"], correct: "🥁", age: 11 },
+      { q: "ما معنى كلمة 'حرية'؟", options: ["لعبة", "استقلال", "وقت فراغ"], correct: "استقلال", age: 12 },
+      { q: "كم عدد قارات العالم؟", options: ["5", "6", "7"], correct: "7", age: 13 }
+    ];
+
+    let step = 0;
+    let correctAnswers = [];
+
+    function renderQuestion() {
+      const q = questions[step];
+      document.getElementById("quizArea").innerHTML = `
+        <p><strong>${q.q}</strong></p>
+        ${q.options.map(opt => `<button onclick="select('${opt}')">${opt}</button>`).join("")}
+      `;
+    }
+
+    function select(ans) {
+      const q = questions[step];
+      if (ans === q.correct) {
+        correctAnswers.push(q.age);
+      }
+      step++;
+      if (step < questions.length) {
+        renderQuestion();
+      } else {
+        let estimatedAge;
+        if (correctAnswers.length === 0) {
+          estimatedAge = 3;
+        } else {
+          const maxAge = Math.max(...correctAnswers);
+          const avgAge = Math.round(correctAnswers.reduce((a, b) => a + b, 0) / correctAnswers.length);
+          estimatedAge = Math.round((maxAge + avgAge) / 2);
+        }
+
+        localStorage.setItem("child_age", estimatedAge);
+        window.location.href = "games.html";
+      }
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
